@@ -225,6 +225,7 @@
           </dependency>
         </dependencies>
         <configuration>
+          <skip>true</skip>
           <consoleOutput>true</consoleOutput>
           <encoding>UTF-8</encoding>
           <configLocation>style/checkstyle.xml</configLocation>
@@ -374,6 +375,7 @@
           <artifactId>apache-rat-plugin</artifactId>
           <version>${apache-rat-plugin.version}</version>
           <configuration>
+            <skip>true</skip>
             <excludeSubProjects>false</excludeSubProjects>
             <numUnapprovedLicenses>0</numUnapprovedLicenses>
             <licenses>

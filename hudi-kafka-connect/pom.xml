@@ -142,7 +142,7 @@
         <!-- NOTE: This is temp (SchemaProvide dep) until PR3162 lands -->
         <dependency>
             <groupId>org.apache.hudi</groupId>
-            <artifactId>hudi-flink_${scala.binary.version}</artifactId>
+            <artifactId>tis-hudi-flink_${scala.binary.version}</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
@@ -174,7 +174,7 @@
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
         </dependency>
-        
+
         <!-- Fasterxml -->
         <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>
