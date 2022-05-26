@@ -187,6 +187,7 @@ public class HoodieHiveClient extends AbstractSyncHoodieClient {
           if (!paths.containsKey(storageValue)) {
             events.add(PartitionEvent.newPartitionAddEvent(storagePartition));
           } else if (!paths.get(storageValue).equals(fullStoragePartitionPath)) {
+            LOG.info("newPartitionUpdateEvent detailed info paths.get(storageValue):"+paths.get(storageValue)+" notEqual with:"+fullStoragePartitionPath);
             events.add(PartitionEvent.newPartitionUpdateEvent(storagePartition));
           }
         }

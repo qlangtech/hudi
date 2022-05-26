@@ -293,6 +293,9 @@ public class HoodieTableConfig extends HoodieConfig {
    */
   public static void create(FileSystem fs, Path metadataFolder, Properties properties)
       throws IOException {
+//    if(1==1){
+//      throw new IllegalStateException("");
+//    }
     if (!fs.exists(metadataFolder)) {
       fs.mkdirs(metadataFolder);
     }
