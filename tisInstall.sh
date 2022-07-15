@@ -5,9 +5,9 @@
 
 #MVN_PROFILE="spark3,flink-bundle-shade-hive3"
 compileAndDeploy(){
-MVN_PROFILE = $1
+MVN_PROFILE="$1"
 echo "compile and deploy with maven profile:$MVN_PROFILE "
-mvn deploy -P$MVN_PROFILE \
+mvn clean deploy -P$MVN_PROFILE \
  -Dmaven.test.skip=true \
  -pl hudi-flink,hudi-common\
 ,packaging/hudi-flink-bundle\
