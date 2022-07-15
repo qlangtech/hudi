@@ -96,43 +96,51 @@ public class FSUtils {
         return conf;
     }
 
-    static IExtraHadoopFileSystemGetter extraFileSystemLoader;
-
+   // static IExtraHadoopFileSystemGetter extraFileSystemLoader;
 
     public static FileSystem getFs(String path, Configuration conf) {
-        if (extraFileSystemLoader == null || FSUtils.class.getClassLoader() != extraFileSystemLoader.getClass().getClassLoader()) {
-            LOG.info("start to get create instance of extraFileSystemLoader");
-            extraFileSystemLoader = getExtraFileSystemLoader(conf, 0);
-        }
-        if (extraFileSystemLoader == null) {
-            throw new IllegalStateException("extraFileSystemLoader can not be null");
-        }
-
-        LOG.info("load hdfs of " + path + " from extrnal System");
-        return extraFileSystemLoader.getHadoopFileSystem(path);
-    }
-
-    private static IExtraHadoopFileSystemGetter getExtraFileSystemLoader(Configuration conf, int retryCount) {
-
+        FileSystem fs;
+        prepareHadoopConf(conf);
         try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+            LOG.info("load hdfs of " + path + " from extrnal System");
+            fs = new Path(path).getFileSystem(conf);
+        } catch (IOException e) {
+            throw new HoodieIOException("Failed to get instance of " + FileSystem.class.getName(), e);
         }
-
-        ServiceLoader<IExtraHadoopFileSystemGetter> svcLoader
-                = ServiceLoader.load(IExtraHadoopFileSystemGetter.class, FSUtils.class.getClassLoader());
-        Iterator<IExtraHadoopFileSystemGetter> it = svcLoader.iterator();
-        while (it.hasNext()) {
-            return it.next();
-        }
-
-        if (retryCount < 3) {
-            return getExtraFileSystemLoader(conf, retryCount + 1);
-        } else {
-            throw new IllegalStateException("has not find any extraFileSystemLoader,retryCount:" + retryCount);
-        }
+        return fs;
+//        if (extraFileSystemLoader == null || FSUtils.class.getClassLoader() != extraFileSystemLoader.getClass().getClassLoader()) {
+//            LOG.info("start to get create instance of extraFileSystemLoader");
+//            extraFileSystemLoader = getExtraFileSystemLoader(conf, 0);
+//        }
+//        if (extraFileSystemLoader == null) {
+//            throw new IllegalStateException("extraFileSystemLoader can not be null");
+//        }
+//
+//        LOG.info("load hdfs of " + path + " from extrnal System");
+//        return extraFileSystemLoader.getHadoopFileSystem(path);
     }
+
+//    private static IExtraHadoopFileSystemGetter getExtraFileSystemLoader(Configuration conf, int retryCount) {
+//
+//        try {
+//            Thread.sleep(2000);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
+//
+//        ServiceLoader<IExtraHadoopFileSystemGetter> svcLoader
+//                = ServiceLoader.load(IExtraHadoopFileSystemGetter.class, FSUtils.class.getClassLoader());
+//        Iterator<IExtraHadoopFileSystemGetter> it = svcLoader.iterator();
+//        while (it.hasNext()) {
+//            return it.next();
+//        }
+//
+//        if (retryCount < 3) {
+//            return getExtraFileSystemLoader(conf, retryCount + 1);
+//        } else {
+//            throw new IllegalStateException("has not find any extraFileSystemLoader,retryCount:" + retryCount);
+//        }
+//    }
 
     public static FileSystem getFs(String path, Configuration conf, boolean localByDefault) {
         if (localByDefault) {
