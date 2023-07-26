@@ -121,7 +121,7 @@
 
 <!--        <spark3.version>3.1.2</spark3.version>-->
         <!--for aliyum emr spark3 version 3.2.1 ,so change to -->
-        <spark3.version>3.2.1</spark3.version>
+        <spark3.version>3.3.1</spark3.version>
         <hudi.spark.module>hudi-spark2</hudi.spark.module>
         <avro.version>1.8.2</avro.version>
         <scala11.version>2.11.12</scala11.version>
@@ -1654,6 +1654,21 @@
                 </property>
             </activation>
         </profile>
+
+
+        <profile>
+            <id>hive2</id>
+            <properties>
+                <hive.version>2.3.1</hive.version>
+            </properties>
+        </profile>
+        <profile>
+            <id>hive3</id>
+            <properties>
+                <hive.version>3.1.3</hive.version>
+            </properties>
+        </profile>
+
     </profiles>
 
 </project>

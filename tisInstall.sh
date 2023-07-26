@@ -17,6 +17,6 @@ mvn clean deploy -P$MVN_PROFILE \
 -DaltDeploymentRepository=base::default::http://localhost:8080/release
 }
 
-compileAndDeploy "spark2,flink-bundle-shade-hive2"
+compileAndDeploy "spark2,flink-bundle-shade-hive2,hive2"
 
-compileAndDeploy "spark3,flink-bundle-shade-hive3"
+compileAndDeploy "spark3,flink-bundle-shade-hive3,hive3"
