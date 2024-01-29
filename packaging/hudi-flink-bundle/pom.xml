@@ -25,7 +25,7 @@
     <relativePath>../../pom.xml</relativePath>
   </parent>
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>tis-hudi-flink-bundle_${scala.binary.version}_hive_${hive.version}</artifactId>
+  <artifactId>tis-hudi-flink-bundle_${scala.binary.version}_hive_${hive.version}_spark_${spark.version}</artifactId>
   <packaging>jar</packaging>
 
   <properties>
@@ -36,7 +36,7 @@
     <javax.servlet.version>3.1.0</javax.servlet.version>
     <!-- override to be same with flink 1.12.2 -->
     <parquet.version>1.11.1</parquet.version>
-    <hive.version>2.3.1</hive.version>
+<!--    <hive.version>2.3.1</hive.version>-->
     <thrift.version>0.9.3</thrift.version>
   </properties>
 
@@ -680,7 +680,7 @@
     <profile>
       <id>flink-bundle-shade-hive3</id>
       <properties>
-        <hive.version>3.1.2</hive.version>
+<!--        <hive.version>3.1.2</hive.version>-->
         <flink.bundle.hive.scope>compile</flink.bundle.hive.scope>
       </properties>
       <dependencies>
