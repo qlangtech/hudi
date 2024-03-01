@@ -25,7 +25,8 @@
     <relativePath>../../pom.xml</relativePath>
   </parent>
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>hudi-flink${flink.bundle.version}-bundle</artifactId>
+<!--  <artifactId>hudi-flink${flink.bundle.version}-bundle</artifactId>-->
+  <artifactId>tis-hudi-flink-bundle_hive_${hive.version}_spark_${spark.version}</artifactId>
   <packaging>jar</packaging>
 
   <properties>
@@ -37,7 +38,7 @@
     <javax.servlet.version>3.1.0</javax.servlet.version>
     <!-- override to be same with flink 1.15.x -->
     <parquet.version>${flink.format.parquet.version}</parquet.version>
-    <hive.version>2.3.1</hive.version>
+<!--    <hive.version>2.3.1</hive.version>-->
     <thrift.version>0.9.3</thrift.version>
   </properties>
 
@@ -78,7 +79,7 @@
                   <include>org.apache.hudi:hudi-common</include>
                   <include>org.apache.hudi:hudi-client-common</include>
                   <include>org.apache.hudi:hudi-flink-client</include>
-                  <include>org.apache.hudi:hudi-flink</include>
+                  <include>org.apache.hudi:tis-hudi-flink</include>
                   <include>org.apache.hudi:${hudi.flink.module}</include>
                   <include>org.apache.hudi:hudi-hive-sync</include>
                   <include>org.apache.hudi:hudi-sync-common</include>
@@ -147,6 +148,8 @@
                   <include>org.datanucleus:datanucleus-core</include>
                   <include>org.datanucleus:datanucleus-api-jdo</include>
                   <include>org.apache.thrift:libfb303</include>
+                  <!-- baisui add for loading class org/apache/thrift/TBase-->
+                  <include>org.apache.thrift:libthrift</include>
                   <include>org.apache.orc:orc-core</include>
 
                   <include>commons-codec:commons-codec</include>
@@ -291,7 +294,7 @@
     </dependency>
     <dependency>
       <groupId>org.apache.hudi</groupId>
-      <artifactId>hudi-flink</artifactId>
+      <artifactId>tis-hudi-flink</artifactId>
       <version>${project.version}</version>
       <exclusions>
         <exclusion>
@@ -627,6 +630,9 @@
         <hive.version>2.3.1</hive.version>
         <flink.bundle.hive.scope>compile</flink.bundle.hive.scope>
       </properties>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
       <dependencies>
         <dependency>
           <groupId>${hive.groupid}</groupId>

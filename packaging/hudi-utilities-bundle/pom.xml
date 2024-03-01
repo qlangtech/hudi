@@ -23,7 +23,7 @@
     <relativePath>../../pom.xml</relativePath>
   </parent>
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>hudi-utilities-bundle_${scala.binary.version}</artifactId>
+  <artifactId>tis-hudi-utilities-bundle_${scala.binary.version}_hive_${hive.version}_spark_${spark.version}</artifactId>
   <packaging>jar</packaging>
 
   <properties>
@@ -34,6 +34,7 @@
 
   <build>
     <plugins>
+
       <plugin>
         <groupId>org.apache.rat</groupId>
         <artifactId>apache-rat-plugin</artifactId>
